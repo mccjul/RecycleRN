@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import {
-    View
-} from 'react-native';
+import { View, Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-
-import { RkStyleSheet, RkButton } from 'react-native-ui-kitten';
+import { RkText, RkTheme, RkStyleSheet, RkButton } from 'react-native-ui-kitten';
 import { Walkthrough } from './../components/walkthrough';
-import { Walkthrough1 } from './walkthroughs/walkthrough1';
 import { PaginationIndicator } from './../components';
 import { loginStatusChanged, authStateChanged, fontLoadedChanged } from '../actions';
 import AppSpinner from './../components/Loading/AppSpinner';
 import NavigatorService from './../utils/navigator';
 import ErrorMessage from './../components/ErrorMessage';
 import { UtilStyles } from '../style/styles';
+import {scale, scaleModerate, scaleVertical} from './../utils/scale';
+
 
 class Welcome_Screen extends Component {
 
@@ -33,14 +31,25 @@ class Welcome_Screen extends Component {
         this.setState({ index })
     }
 
+    GoToMain=()=>{
+        setTimeout(function(){
+          NavigatorService.reset('main_screen')
+        }, 2000);
+      }
+
     render() {
+        let contentHeight = scaleModerate(375, 1);
+        let height = Dimensions.get('window').height - contentHeight;
+        let width = Dimensions.get('window').width;
+        let height_sub = height/2;
+        let width_sub = width - 40;
+
+        image = <Image onLoad={ this.GoToMain }  style={[styles.image, {height, width}]} source={require('../assets/images/backgroundLoginV7.png')}/> ;
+// image_quality = <Image style={{ resizeMode: 'contain', height: height_sub, width: width_sub }} source={require('../../assets/images/fastDelivery.png')}/> ; 
         return (
             <View style={styles.screen}>
                 <ErrorMessage />
-                <Walkthrough onChanged={(index) => this.changeIndex(index)}>
-                    <Walkthrough1 />
-                </Walkthrough>
-                <RkButton rkType='large outline' onPress={() => { NavigatorService.reset('main_screen'); }} style={UtilStyles.spaceVertical}>GET STARTED</RkButton>
+                {image}
             </View>
         )
     }
