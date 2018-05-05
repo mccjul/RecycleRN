@@ -20,7 +20,7 @@ import { connect } from "react-redux";
 
 class Map_Screen extends Component {
   static navigationOptions = {
-    title: "Travel"
+    title: "Carte"
   };
 
   constructor(props) {
@@ -33,10 +33,6 @@ class Map_Screen extends Component {
         latitudeDelta: 13,
         longitudeDelta: 15
       },
-      currentLocation: new MapView.AnimatedRegion({
-        latitude: 43.645268,
-        longitude: -79.380537
-      }),
       markers: [
         {
           title: "Windsor",
@@ -166,64 +162,6 @@ class Map_Screen extends Component {
     };
   }
 
-  componentWillMount() {
-    const markerIndex = this.props.startNum[2] - 1;
-    let lat = this.state.markers[markerIndex].coordinates.latitude;
-    let long = this.state.markers[markerIndex].coordinates.longitude;
-
-    this._setCurrentLocation(lat, long);
-
-    // comment this out
-    // setTimeout(() => NavigatorService.navigate('deboard_scan'), 5000);
-  }
-
-  _setCurrentLocation = (x, y) => {
-    this.setState({
-      currentLocation: new MapView.AnimatedRegion({
-        latitude: x,
-        longitude: y
-      })
-    });
-  };
-
-  animate = COUNT => {
-    if (COUNT >= this.state.polylines[0].length) {
-      setTimeout(() => NavigatorService.navigate("deboard_scan"), 3000);
-    } else {
-      const { currentLocation } = this.state;
-      const newCoordinate = this.state.polylines[0][COUNT];
-
-      currentLocation.timing(newCoordinate, 50000).start();
-
-      if (COUNT >= 1) {
-        let markersCopy = JSON.parse(JSON.stringify(this.state.markers));
-        //make changes to ingredients
-        markersCopy[COUNT - 1].pinColor = "#00FF00";
-        this.setState({
-          markers: markersCopy
-        });
-      }
-
-      const stationName = this.state.markers[COUNT].title;
-      // ToastAndroid.show(
-      //   "You have arrived at " + stationName,
-      //   ToastAndroid.SHORT
-      // );
-
-      // this._showToast("You have arrived at " + stationName)
-      this.refs.toast.show("You have arrived at " + stationName);
-
-      COUNT++;
-
-      setTimeout(() => this.animate(COUNT), 3000);
-    }
-  };
-
-  componentDidMount() {
-    const COUNT = this.props.startNum[2];
-    setTimeout(() => this.animate(COUNT), 3000);
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -245,24 +183,7 @@ class Map_Screen extends Component {
               strokeWidth={2}
             />
           ))}
-
-          <MapView.Marker.Animated
-            ref={userMarker => {
-              this._userMarker = userMarker;
-            }}
-            coordinate={this.state.currentLocation}
-            title="You"
-            pinColor="#0000FF"
-          />
         </MapView>
-        {/* <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={this.animate.bind(this)}
-            style={[styles.bubble, styles.button]}
-          >
-            <Text>Travel</Text>
-          </TouchableOpacity>
-        </View> */}
         <Toast ref="toast" position="top" />
       </View>
     );
@@ -314,7 +235,7 @@ let styles = RkStyleSheet.create(theme => ({
 }));
 
 const mapStateToProps = ({ qr }) => {
-  return { startNum: qr.onboard.stpNum };
+  return { startNum: 0 };
 };
 
 export default connect(mapStateToProps, null)(Map_Screen);

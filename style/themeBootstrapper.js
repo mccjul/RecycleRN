@@ -1,8 +1,5 @@
-import {RkTheme} from 'react-native-ui-kitten';
-import {AvatarTypes} from '../components/avatarTypes';
-
-let robotoLight = 'Roboto-Light';
-let robotoMed = 'Roboto-Medium';
+import { RkTheme } from 'react-native-ui-kitten';
+import { AvatarTypes } from '../components/avatarTypes';
 
 export let bootstrap = () => {
 
@@ -127,27 +124,9 @@ export let bootstrap = () => {
     }
   });
 
-  RkTheme.setType('RkText', 'header', {
-    text: {
-      fontFamily: robotoMed
-    }
-  });
-
   //endregion
 
   //region RkText
-
-  RkTheme.setType('RkText', 'basic', {
-    text: {
-      fontFamily: robotoLight,
-    }
-  });
-
-  RkTheme.setType('RkText', 'bold', {
-    text: {
-      fontFamily: robotoMed,
-    }
-  });
 
   RkTheme.setType('RkText', 'caption', {
     color: theme => theme.colors.text.inverse
@@ -185,14 +164,8 @@ export let bootstrap = () => {
 
   //region RkButton Types
 
-  RkTheme.setType('RkButton', 'basic', {
-    content: {
-      fontFamily: robotoMed
-    }
-  });
-
   RkTheme.setType('RkButton', 'hitSlop', {
-      hitSlop: {top: 5, left: 5, bottom: 5, right: 5}
+    hitSlop: { top: 5, left: 5, bottom: 5, right: 5 }
   });
 
   RkTheme.setType('RkButton', 'outline-success', {
@@ -209,14 +182,6 @@ export let bootstrap = () => {
     }
   });
 
-  RkTheme.setType('RkButton', 'action', {
-    color: theme => theme.colors.warning,
-    content: {
-      fontFamily: robotoMed,
-    }
-  });
-
-
   RkTheme.setType('RkButton', 'accent', {
     color: RkTheme.colors.accent
   });
@@ -225,13 +190,7 @@ export let bootstrap = () => {
     backgroundColor: RkTheme.colors.accent
   });
 
-  //endregion
-
-  RkTheme.setType('RkTab', 'basic', {
-    inner: {
-      fontFamily: robotoMed
-    }
-  });
+  //endregion 
 
   RkTheme.setType('RkTab', 'noBorders', {
     container: {

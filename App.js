@@ -22,17 +22,8 @@ import { UtilStyles } from "./style/styles";
 import { AppLoading, Font, Asset } from "expo";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-import Welcome_Screen from "./screens/Welcome_Screen";
-import Profile_Screen from "./screens/Profile_Screen";
-import Login_Screen from "./screens/Login_Screen";
-import Register_Screen from "./screens/Register_Screen";
-import Reset_Screen from "./screens/Reset_Screen";
-import Menu_Screen from "./screens/Menu_Screen";
-import QrScan_Screen from "./screens/QrScan_Screen";
-import QrScan_Screen_Deboard from "./screens/QrScan_Screen_Deboard";
+import Camera_Screen from "./screens/Camera_Screen";
 import Settings_Screen from "./screens/Settings_Screen";
-import Waiting_Room_Screen from "./screens/Waiting_Room_Screen";
-import ThankYou_Screen from "./screens/ThankYou_Screen";
 import Map_Screen from "./screens/Map_Screen";
 
 bootstrap();
@@ -60,31 +51,11 @@ export default class App extends React.Component {
       messagingSenderId: "873334685017"
     });
   }
-  
+
   async _cacheResourcesAsync() {
     const images = [
       require("./assets/icons/app-icon.png"),
-      require("./assets/icons/loading-icon.png"),
-      require("./assets/images/backgroundLoginV1.png"),
-      require("./assets/images/backgroundLoginV5.png"),
-      require("./assets/images/backgroundLoginV6.png"),
-      require("./assets/images/cartLogo.png"),
-      require("./assets/images/fastDelivery.png"),
-      require("./assets/images/kingston.png"),
-      require("./assets/images/kitchener-waterloo.png"),
-      require("./assets/images/kittenImage.png"),
-      require("./assets/images/london.png"),
-      require("./assets/images/montreal.png"),
-      require("./assets/images/ottawa.png"),
-      require("./assets/images/pearson-airport.png"),
-      require("./assets/images/quality.png"),
-      require("./assets/images/quebec.png"),
-      require("./assets/images/montreal.png"),
-      require("./assets/images/toronto-east-harbour-transit-hub.png"),
-      require("./assets/images/toronto-union.png"),
-      require("./assets/images/valueForMoney.png"),
-      require("./assets/images/waterloo.png"),
-      require("./assets/images/windsor.png")
+      require("./assets/icons/loading-icon.png")
     ];
 
     await Asset.loadAsync(images);
@@ -94,8 +65,6 @@ export default class App extends React.Component {
 
   _loadAssetsAsync = async () => {
     await Font.loadAsync({
-      "Roboto-Light": require("./fonts/Roboto-Light.ttf"),
-      "Roboto-Medium": require("./fonts/Roboto-Medium.ttf"),
       Borg: require("./fonts/Borg.ttf"),
       Curely: require("./fonts/Curely.ttf"),
       FontAwesome: require("./fonts/FontAwesome.ttf")
@@ -109,48 +78,21 @@ export default class App extends React.Component {
 
     const MainNavigator = TabNavigator(
       {
-        menu_scr: {
-          screen: Menu_Screen,
-          title: "Kata",
-          navigationOptions: {
-            tabBarIcon: ({ tintColor }) => (
-              <Icon name={"train"} size={20} color={tintColor} />
-            )
-          }
-        },
-        board_scan: {
-          screen: QrScan_Screen,
-          title: "Board",
-          navigationOptions: {
-            tabBarIcon: ({ tintColor }) => (
-              <Icon name={"sign-in"} size={20} color={tintColor} />
-            )
-          }
-        },
-        waiting_room: {
-          screen: Waiting_Room_Screen,
-          title: "Waiting Room",
-          navigationOptions: {
-            tabBarIcon: ({ tintColor }) => (
-              <Icon name={"clock-o"} size={20} color={tintColor} />
-            )
-          }
-        },
         travel: {
           screen: Map_Screen,
-          title: "Travel",
+          title: "Carte",
           navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
               <Icon name={"map"} size={20} color={tintColor} />
             )
           }
         },
-        deboard_scan: {
-          screen: QrScan_Screen_Deboard,
-          title: "Deboard",
+        board_scan: {
+          screen: Camera_Screen,
+          title: "Caméra",
           navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-              <Icon name={"sign-out"} size={20} color={tintColor} />
+              <Icon name={"sign-in"} size={20} color={tintColor} />
             )
           }
         }
@@ -166,13 +108,7 @@ export default class App extends React.Component {
                 name={"sliders"}
               />
             </TouchableOpacity>
-          ),
-          tabBarOnPress: ({ scene, previousScene, jumpToIndex }) => {
-            if (previousScene.key === 'travel' && scene.route.key === 'deboard_scan') {
-              jumpToIndex(4)
-            }
-            return;
-          }
+          )
         }),
 
         tabBarPosition: "bottom"
@@ -180,16 +116,10 @@ export default class App extends React.Component {
     );
 
     const LoginNavigator = StackNavigator({
-      welcome_screen: { screen: Welcome_Screen },
-      register_screen: { screen: Register_Screen },
-      reset_screen: { screen: Reset_Screen },
-      profile_screen: { screen: Profile_Screen },
-      login_screen: { screen: Login_Screen },
       main_screen: { screen: MainNavigator },
-      qr_scan: { screen: QrScan_Screen },
-      settings_screen: { screen: Settings_Screen },
-      thank_you: { screen: ThankYou_Screen },
-      map_screen: { screen: Map_Screen }
+      camera_screen: { screen: Camera_Screen },
+      map_screen: { screen: Map_Screen },
+      settings_screen: { screen: Settings_Screen }
     });
 
     return (

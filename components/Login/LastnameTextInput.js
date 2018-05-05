@@ -61,7 +61,7 @@ class LastnameTextInput extends Component {
       <View style = {styles.emailPwdContainer} >
         <RkTextInput
           rkType='rounded'
-          placeholder='Last Name'
+          placeholder='Nom'
           value={this.props.lastname}
           onChangeText={lastname => this.onLastnameChange(lastname)}
           onBlur={() => { this.validateInput('lastname', this.props.lastname); }}

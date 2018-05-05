@@ -49,25 +49,25 @@ class Settings_Screen extends Component {
             <RkText rkType='header6 primary'>INFO</RkText>
           </View>
           <View style={styles.row}>
-            <RkTextInput label='First Name'
+            <RkTextInput label='Prénom'
               value={firstname}
               rkType='right clear'
               onChangeText={(text) => this.setState({ firstName: text })} />
           </View>
           <View style={styles.row}>
-            <RkTextInput label='Last Name'
+            <RkTextInput label='Nom'
               value={lastname}
               onChangeText={(text) => this.setState({ lastName: text })}
               rkType='right clear' />
           </View>
           <View style={styles.row}>
-            <RkTextInput label='Email'
+            <RkTextInput label='Courriel'
               value={email}
               onChangeText={(text) => this.setState({ email: text })}
               rkType='right clear' />
           </View>
           <View style={styles.row}>
-            <RkTextInput label='Phone'
+            <RkTextInput label='Téléphone'
               value={phone}
               onChangeText={(text) => this.setState({ phone: text })}
               rkType='right clear' />
@@ -77,15 +77,9 @@ class Settings_Screen extends Component {
           rkType='xlarge rounded info'
           style={styles.button}
           onPress={() => this.setState({ payment_modal: true })}
-        >Update Payment Method
+        >À propos
         </RkButton>
         <CardModal payment_modal={this.state.payment_modal} _closeModal={this._closeModal.bind(this)} />
-        <RkButton
-          rkType='xlarge rounded'
-          style={styles.button}
-          onPress={() => this.props.logoutUser()}
-        >Sign Out
-        </RkButton>
       </ScrollView >
     );
   }

@@ -1,31 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux'
 import { BarCodeScanner, Permissions } from 'expo';
 import { UtilStyles } from '../style/styles';
-import { connect } from 'react-redux'
-import { deBoard } from '../actions';
+import NavigatorService from './../utils/navigator';
+import { onBoard } from '../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export const CustomNavButton = () => {
-  return (
-    <View>
-      <TouchableOpacity onPress={() => NavigatorService.navigate("travel")}>
-        <Icon style={[UtilStyles.icon, {fontSize: 20, marginLeft: 10}]} name='chevron-left'/>
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-class QrScan_Screen_Deboard extends Component {
+class QrScan_Screen extends Component {
   static navigationOptions = {
-    title: 'Unboarding',
-    headerLeft: CustomNavButton()
+    title: 'Caméra'
   };
+
+  constructor(props) {
+    super(props);
+    this.scanSuccess = false;
+  }
 
   state = {
     hasCameraPermission: null,
   }
-
 
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -51,8 +45,14 @@ class QrScan_Screen_Deboard extends Component {
     }
   }
 
+  _handlePress = () => {
+    this.props.navigation.navigate("main_screen");
+  };
+
   _handleBarCodeRead = ({ type, data }) => {
-    this.props.deBoard(data)
+    if (this.scanSuccess) return;
+    this.scanSuccess = true;
+    this.props.onBoard(data)
   }
 }
 
@@ -68,5 +68,5 @@ const styles = StyleSheet.create({
 });
 
 export default connect(null, {
-  deBoard
-})(QrScan_Screen_Deboard);
+  onBoard
+})(QrScan_Screen);
