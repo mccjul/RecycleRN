@@ -8,14 +8,12 @@ import {
   Button,
   Dimensions,
   StyleSheet,
-  Easing,
-  ToastAndroid
+  Easing
 } from "react-native";
 import { RkText, RkCard, RkStyleSheet, RkTheme } from "react-native-ui-kitten";
 import { Header } from "react-navigation";
 import NavigatorService from "./../utils/navigator";
 import { MapView, Circle, Constants, Location, Permissions } from "expo";
-import Toast from "react-native-easy-toast";
 import { connect } from "react-redux";
 
 class Map_Screen extends Component {
@@ -184,7 +182,6 @@ class Map_Screen extends Component {
             />
           ))}
         </MapView>
-        <Toast ref="toast" position="top" />
       </View>
     );
   }
