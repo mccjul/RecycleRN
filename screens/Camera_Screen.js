@@ -7,7 +7,7 @@ import NavigatorService from './../utils/navigator';
 import { onBoard } from '../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class QrScan_Screen extends Component {
+class Camera_Screen extends Component {
   static navigationOptions = {
     title: 'Caméra'
   };
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
 
 export default connect(null, {
   onBoard
-})(QrScan_Screen);
+})(Camera_Screen);
