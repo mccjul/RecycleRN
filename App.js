@@ -22,6 +22,7 @@ import { UtilStyles } from "./style/styles";
 import { AppLoading, Font, Asset } from "expo";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+import Welcome_Screen from "./screens/Welcome_Screen";
 import Camera_Screen from "./screens/Camera_Screen";
 import Settings_Screen from "./screens/Settings_Screen";
 import Map_Screen from "./screens/Map_Screen";
@@ -116,6 +117,7 @@ export default class App extends React.Component {
     );
 
     const LoginNavigator = StackNavigator({
+      welcome_screen: { screen: Welcome_Screen },
       main_screen: { screen: MainNavigator },
       camera_screen: { screen: Camera_Screen },
       map_screen: { screen: Map_Screen },

@@ -208,8 +208,8 @@ export const authStateChanged = () => {
           payload: { loggedin: 'loggedin', user: { name: user.displayName, email: user.email, phone: user.phoneNumber } }
         });
         currentNavState = NavigatorService.getCurrentRoute();
-        if (currentNavState.routeName != 'main_screen') {
-          NavigatorService.reset('main_screen');
+        if (currentNavState.routeName != 'welcome_screen') {
+          NavigatorService.reset('welcome_screen');
         }
       } else {
         console.log('Authactions: Line 216: Dispatched not loggedin');
