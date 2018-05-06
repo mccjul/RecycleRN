@@ -54,7 +54,7 @@ class Camera_Screen extends Component {
                         <Icon 
                             style={[ UtilStyles.icon, {  color: 'white'} ]}
                             name={'undo'}
-                            size={50} />
+                            size={35} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.snap.bind(this)}>
                         <Icon 
