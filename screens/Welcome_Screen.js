@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Dimensions } from 'react-native';
+import { View, Image, Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { RkText, RkTheme, RkStyleSheet, RkButton } from 'react-native-ui-kitten';
 import { Walkthrough } from './../components/walkthrough';
@@ -9,13 +9,13 @@ import AppSpinner from './../components/Loading/AppSpinner';
 import NavigatorService from './../utils/navigator';
 import ErrorMessage from './../components/ErrorMessage';
 import { UtilStyles } from '../style/styles';
-import {scale, scaleModerate, scaleVertical} from './../utils/scale';
+import { scale, scaleModerate, scaleVertical } from './../utils/scale';
 
 
 class Welcome_Screen extends Component {
 
     static navigationOptions = {
-        header: null,
+        header: null
     };
 
     constructor(props) {
@@ -31,25 +31,28 @@ class Welcome_Screen extends Component {
         this.setState({ index })
     }
 
-    GoToMain=()=>{
-        setTimeout(function(){
-          NavigatorService.reset('main_screen')
+    GoToMain = () => {
+        setTimeout(function () {
+            NavigatorService.reset('main_screen')
         }, 2000);
-      }
+    }
 
     render() {
         let contentHeight = scaleModerate(375, 1);
         let height = Dimensions.get('window').height - contentHeight;
         let width = Dimensions.get('window').width;
-        let height_sub = height/2;
+        let height_sub = height / 2;
         let width_sub = width - 40;
 
-        image = <Image onLoad={ this.GoToMain }  style={[styles.image, {height, width}]} source={require('../assets/images/backgroundLoginV7.png')}/> ;
-// image_quality = <Image style={{ resizeMode: 'contain', height: height_sub, width: width_sub }} source={require('../../assets/images/fastDelivery.png')}/> ; 
+        image = <Image onLoad={this.GoToMain} style={[styles.image, { height, width }]} source={require('../assets/images/backgroundLoginV3.png')} />;
+        image_quality = <Image style={{ resizeMode: 'contain', height: height_sub, width: width_sub }} source={require('../assets/images/cartLogo.png')} />;
         return (
             <View style={styles.screen}>
                 <ErrorMessage />
                 {image}
+                {image_quality}
+                <Text style={{fontWeight: 'bold', color: 'mediumseagreen', fontSize: 40, paddingTop: 20}}>eTri</Text>
+                <Text>HackQC2018</Text>
             </View>
         )
     }

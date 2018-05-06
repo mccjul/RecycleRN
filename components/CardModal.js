@@ -17,45 +17,45 @@ class CardModal extends Component {
     super(props);
 
     this.state = {
-      Number: '4242424242424242',
-      Exp_Month: '02',
-      Exp_Day: '21',
-      CVC: '999',
+      Nom: 'eTri',
+      Version: '01',
+      But: 'HackQC2018',
+      GitHub: 'mccjul/RecycleRN',
     }
   }
 
   render() {
 
-    const { Number, Exp_Month, Exp_Day, CVC } = this.state
+    const { Nom, Version, But, GitHub } = this.state
 
     return (
       <Modal isVisible={this.props.payment_modal}>
         <View style={styles.modalContent}>
           <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5, marginBottom: 25 }}>
             <View style={styles.row}>
-              <RkTextInput label='Number'
-                value={Number}
-                onChangeText={(text) => this.setState({ Number: text })}
+              <RkTextInput label='Nom'
+                value={Nom}
+                onChangeText={(text) => this.setState({ Nom: text })}
                 rkType='right clear' />
             </View>
             <View style={styles.row}>
-              <RkTextInput label='Exp Month'
-                value={Exp_Month}
-                onChangeText={(text) => this.setState({ Exp_Month: text })}
+              <RkTextInput label='Version'
+                value={Version}
+                onChangeText={(text) => this.setState({ Version: text })}
                 rkType='right clear'
               />
             </View>
             <View style={styles.row}>
-              <RkTextInput label='Exp Day'
-                value={Exp_Day}
-                onChangeText={(text) => this.setState({ Exp_Day: text })}
+              <RkTextInput label='But'
+                value={But}
+                onChangeText={(text) => this.setState({ But: text })}
                 rkType='right clear'
               />
             </View>
             <View style={styles.row}>
-              <RkTextInput label='CVC'
-                value={CVC}
-                onChangeText={(text) => this.setState({ CVC: text })}
+              <RkTextInput label='GitHub'
+                value={GitHub}
+                onChangeText={(text) => this.setState({ GitHub: text })}
                 rkType='right clear'
               />
             </View>
@@ -63,21 +63,6 @@ class CardModal extends Component {
           <View style={{
             flexDirection: 'row',
           }}>
-            <RkButton
-              style={{ width: 110, justifyContent: 'flex-start', marginRight: 30 }}
-              onPress={() => { this.props._closeModal() }}
-              rkType='medium danger rounded'>
-              <Icon
-                style={[
-                  UtilStyles.icon,
-                  UtilStyles.iconRound,
-                  {  color: 'white', paddingRight: 10 }
-                ]}
-                name={'times-circle'}
-                size={28} />
-              Close
-            </RkButton>
-
             <RkButton
               style={{ width: 110, justifyContent: 'flex-start' }}
               onPress={() => {
@@ -93,7 +78,7 @@ class CardModal extends Component {
                 ]}
                 name={'check-circle'}
                 size={28} />
-              Update
+              Close
             </RkButton>
           </View>
         </View>

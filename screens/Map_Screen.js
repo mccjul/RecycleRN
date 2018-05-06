@@ -18,7 +18,11 @@ import { connect } from "react-redux";
 
 class Map_Screen extends Component {
   static navigationOptions = {
-    title: "Carte"
+    title: "Carte",
+    headerTintColor: "white",
+    headerStyle: {
+      backgroundColor: 'mediumseagreen'
+    }
   };
 
   constructor(props) {
@@ -191,7 +195,6 @@ let styles = RkStyleSheet.create(theme => ({
   container: {
     backgroundColor: theme.colors.screen.scroll,
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#ecf0f1",
     ...StyleSheet.absoluteFillObject,
     justifyContent: "flex-end",
     alignItems: "center"

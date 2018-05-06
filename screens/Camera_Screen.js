@@ -10,7 +10,11 @@ import { RkButton } from 'react-native-ui-kitten';
 
 class Camera_Screen extends Component {
   static navigationOptions = {
-    title: 'Caméra'
+    title: 'Caméra',
+    headerTintColor: "white",
+    headerStyle: {
+      backgroundColor: 'mediumseagreen'
+    }
   };
 
   constructor(props) {

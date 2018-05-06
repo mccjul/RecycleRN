@@ -37,8 +37,8 @@ class LoginHeaderImage extends Component {
         let contentHeight = 375;
         let height = Dimensions.get('window').height - contentHeight;
         let width = Dimensions.get('window').width;
-        image = (<Image style={[styles.image, { height, width }]}
-          source={require('./../../assets/images/backgroundLoginV6.png')} />);
+        // image = (<Image style={[styles.image, { height, width }]}
+        //   source={require('./../../assets/images/backgroundLoginV6.png')} />);
         return image
       }
       if (this.props.emailPwdBtnStr == 'Profile' || this.props.emailPwdBtnStr == 'Reset') {

@@ -23,6 +23,14 @@ import CardModal from './../components/CardModal';
 
 class Settings_Screen extends Component {
 
+  static navigationOptions = {
+    title: "Paramètres",
+    headerTintColor: "white",
+    headerStyle: {
+      backgroundColor: 'mediumseagreen'
+    }
+  };
+
   constructor(props) {
     super(props);
 
@@ -74,7 +82,7 @@ class Settings_Screen extends Component {
           </View>
         </View>
         <RkButton
-          rkType='xlarge rounded info'
+          rkType='xlarge rounded success'
           style={styles.button}
           onPress={() => this.setState({ payment_modal: true })}
         >À propos
@@ -90,13 +98,6 @@ class Settings_Screen extends Component {
 }
 
 let styles = RkStyleSheet.create(theme => ({
-  root: {
-    backgroundColor: theme.colors.screen.base
-  },
-  header: {
-    backgroundColor: theme.colors.screen.neutral,
-    paddingTop: 25
-  },
   section: {
     marginVertical: 25
   },
