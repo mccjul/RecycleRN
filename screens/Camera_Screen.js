@@ -54,7 +54,7 @@ class Camera_Screen extends Component {
       return <Text>No access to camera</Text>;
     } else {
       return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
           <Spinner visible={this.state.isLoading} color={'#003399'} size={'large'} />
           <Camera style={[{ flex: 1},  this.state.isLoading && {transform: [{ scale: 0 }]} ]} type={this.state.type} ref={(ref) => { this.camera = ref }}>
             <View style={{ flex: 1, backgroundColor: 'transparent', flexDirection: 'column', alignItems: 'center' }}>
