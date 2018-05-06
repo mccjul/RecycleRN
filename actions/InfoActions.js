@@ -15,7 +15,7 @@ export const getInfo = (photo, geo) => {
     formData.append('file', { uri: blobFile, name: filename, type });
     formData.append("geo", geo);
 
-    let result = await fetch("http://7a5bce7a.ngrok.io/api", {
+    let result = await fetch("http://ac506176.ngrok.io/api", {
       method: "POST",
       body: formData,
       header: {
@@ -31,6 +31,7 @@ const processResponse = (r) => {
   switch (r.type) {
     case "bac":
       return {
+        Type: "Recyclage",
         Municipalite: r.municipalite,
         Frequence: r.frequence,
         Jour: r.jour,
@@ -40,6 +41,7 @@ const processResponse = (r) => {
       break;
     case "ordures":
       return {
+        Type: "Poubelle",
         Municipalite: r.municipalite,
         Frequence: r.frequence,
         Jour: r.jour,
@@ -48,10 +50,12 @@ const processResponse = (r) => {
       };
       break;
     case "Electronic":
-      NavigatorService.navigate('map_screen');
+        NavigatorService.navigate('map_screen');
       return {
+        Type: "Électronique",
         NearestDropOff: r.NearestDropOff,
-        displayModal: false
+        Info: "Recyclez vos appareils électroniques aux electrobacs situés aux points suivants.",
+        displayModal: true
       }
       break;
     default:

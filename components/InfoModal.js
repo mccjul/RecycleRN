@@ -18,33 +18,51 @@ class InfoModal extends Component {
   }
 
   render() {
-    const { Municipalite, Frequence, Jour, Info, displayModal } = this.props.data;
+    const { Type, Municipalite, Frequence, Jour, Info, NearestDropOff, displayModal } = this.props.data;
 
     return (
       <Modal isVisible={displayModal}>
         <View style={styles.modalContent}>
-          <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5, marginBottom: 25 }}>
-            <View style={styles.row}>
-              <RkTextInput label='Municipalité'
-                value={Municipalite}
-                rkType='right clear' />
+          {NearestDropOff ? (
+            <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5, marginBottom: 25 }}>
+              <View style={styles.row}>
+                <RkTextInput label='Catégorie'
+                  value={Type}
+                  rkType='right clear' />
+              </View>
+              <View style={styles.row}>
+                <Text style={{ paddingTop: 10, paddingBottom: 10 }}>{Info}</Text>
+              </View>
             </View>
-            <View style={styles.row}>
-              <RkTextInput label='Fréquence'
-                value={Frequence}
-                rkType='right clear'
-              />
-            </View>
-            <View style={styles.row}>
-              <RkTextInput label='Jour'
-                value={Jour}
-                rkType='right clear'
-              />
-            </View>
-            <View style={styles.row}>
-              <Text style={{ paddingTop: 10, paddingBottom: 10 }}>{Info}</Text>
-            </View>
-          </View>
+          ) : (
+              <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5, marginBottom: 25 }}>
+                <View style={styles.row}>
+                  <RkTextInput label='Catégorie'
+                    value={Type}
+                    rkType='right clear' />
+                </View>
+                <View style={styles.row}>
+                  <RkTextInput label='Municipalité'
+                    value={Municipalite}
+                    rkType='right clear' />
+                </View>
+                <View style={styles.row}>
+                  <RkTextInput label='Fréquence'
+                    value={Frequence}
+                    rkType='right clear'
+                  />
+                </View>
+                <View style={styles.row}>
+                  <RkTextInput label='Jour'
+                    value={Jour}
+                    rkType='right clear'
+                  />
+                </View>
+                <View style={styles.row}>
+                  <Text style={{ paddingTop: 10, paddingBottom: 10 }}>{Info}</Text>
+                </View>
+              </View>
+            )}
           <View style={{
             flexDirection: 'row',
           }}>

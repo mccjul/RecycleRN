@@ -11,7 +11,6 @@ import ErrorMessage from './../components/ErrorMessage';
 import { UtilStyles } from '../style/styles';
 import { scale, scaleModerate, scaleVertical } from './../utils/scale';
 
-
 class Welcome_Screen extends Component {
 
     static navigationOptions = {
@@ -51,7 +50,7 @@ class Welcome_Screen extends Component {
                 <ErrorMessage />
                 {image}
                 {image_quality}
-                <Text style={{fontWeight: 'bold', color: 'mediumseagreen', fontSize: 40, paddingTop: 20}}>eTRI</Text>
+                <Text style={{ fontWeight: 'bold', color: 'mediumseagreen', fontSize: 40, paddingTop: 20 }}>eTRI</Text>
                 <Text>HackQC2018</Text>
             </View>
         )

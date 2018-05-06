@@ -16,6 +16,7 @@ import { Header } from "react-navigation";
 import NavigatorService from "./../utils/navigator";
 import { MapView, Circle, Constants, Location, Permissions } from "expo";
 import { connect } from "react-redux";
+import InfoModal from "../components/InfoModal";
 
 class Map_Screen extends Component {
 
@@ -84,7 +85,6 @@ class Map_Screen extends Component {
     let markers = []
     markers.push(user_loc)
 
-
     // for (elec in elec_dropoff) {
     //   template.title = elec.name;
     //   template.coordinates.latitude = elec.Point.lat;
@@ -152,7 +152,7 @@ const mapStateToProps = ({ info }) => {
     return { NearestDropOff: [] }
   }
   // console.log("test" + data.NearestDropOff);
-  return { NearestDropOff: [...data.NearestDropOff] };
+  return { Type: data.type, NearestDropOff: [...data.NearestDropOff] };
 };
 
 export default connect(mapStateToProps, null)(Map_Screen);

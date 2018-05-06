@@ -2,7 +2,7 @@ import {
   INFO
 } from '../constants/Settings';
 
-export default (state = { data: { Municipalite: "", Frequence: "", Jour: "", Info: "", NearestDropOff: "", displayModal: false } }, action) => {
+export default (state = { data: { Type: "", Municipalite: "", Frequence: "", Jour: "", Info: "", NearestDropOff: "", displayModal: false } }, action) => {
   switch (action.type) {
     case INFO:
       return { data: action.payload };
