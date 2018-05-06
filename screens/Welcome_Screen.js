@@ -51,7 +51,7 @@ class Welcome_Screen extends Component {
                 <ErrorMessage />
                 {image}
                 {image_quality}
-                <Text style={{fontWeight: 'bold', color: 'mediumseagreen', fontSize: 40, paddingTop: 20}}>eTri</Text>
+                <Text style={{fontWeight: 'bold', color: 'mediumseagreen', fontSize: 40, paddingTop: 20}}>eTRI</Text>
                 <Text>HackQC2018</Text>
             </View>
         )
