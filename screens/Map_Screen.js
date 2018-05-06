@@ -57,9 +57,9 @@ class Map_Screen extends Component {
     this.setState({ location });
   };
 
-  _getMarkers = (elec_loc) => {
+  _getMarkers = (elec_dropoff) => {
 
-    elec_dropoff = elec_loc.NearestDropOff
+    // elec_dropoff = elec_loc.NearestDropOff
 
     template = {
       title: "You are here!",
@@ -179,7 +179,7 @@ class Map_Screen extends Component {
       text = JSON.stringify(this.state.location);
     }
 
-    let markers = this._getMarkers(elec_loc);
+    let markers = this._getMarkers(this.props.NearestDropOff);
 
     return (
       <View style={{ flex: 1 }} >
@@ -204,8 +204,12 @@ class Map_Screen extends Component {
   }
 }
 
-const mapStateToProps = ({ qr }) => {
-  return { startNum: 0 };
+const mapStateToProps = ({ info }) => {
+  const { data } = info;
+  if (data.type !== 'Electronic') {
+    return { NearestDropOff: [] }
+  }
+  return { NearestDropOff: [...data.NearestDropOff] };
 };
 
 export default connect(mapStateToProps, null)(Map_Screen);
