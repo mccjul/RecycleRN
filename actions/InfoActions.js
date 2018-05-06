@@ -1,6 +1,7 @@
 import {
   INFO,
 } from './../constants/Settings';
+import NavigatorService from './../utils/navigator';
 
 export const getInfo = (photo, geo) => {
   return async (dispatch) => {
@@ -12,7 +13,7 @@ export const getInfo = (photo, geo) => {
 
     var formData = new FormData();
     formData.append('file', { uri: blobFile, name: filename, type });
-    formData.append("geo", "45.4946761,-73.5644848");
+    formData.append("geo", geo);
 
     let result = await fetch("http://7a5bce7a.ngrok.io/api", {
       method: "POST",
@@ -47,6 +48,7 @@ const processResponse = (r) => {
       };
       break;
     case "Electronic":
+      NavigatorService.navigate('map_screen');
       return {
         NearestDropOff: r.NearestDropOff,
         displayModal: false

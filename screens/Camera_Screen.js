@@ -8,6 +8,7 @@ import { getInfo } from '../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { RkButton } from 'react-native-ui-kitten';
 import InfoModal from '../components/InfoModal';
+import Location from 'expo/src/Location';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 class Camera_Screen extends Component {
@@ -82,13 +83,22 @@ class Camera_Screen extends Component {
 
   snap = async () => {
     if (this.camera) {
+      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status !== 'granted') {
+        this.setState({
+          errorMessage: 'Permission to access location was denied',
+        });
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
       this.setState({
         isLoading: true
       });
 
       let photo = await this.camera.takePictureAsync();
-      await this.props.getInfo(photo, "45.4946761,-73.5644848")
-      
+      str_loc = location.coords.latitude + ',' + location.coords.longitude
+      await this.props.getInfo(photo, str_loc);
+
       this.setState({
         modalVisible: true,
         isLoading: false
