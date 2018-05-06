@@ -23,6 +23,8 @@
     "firebase": "^4.10.1",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-elements": "^0.19.1",
+    "react-native-gps-state": "^0.0.2",
     "react-native-keyboard-aware-scroll-view": "^0.4.4",
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-modal": "^5.0.1",
