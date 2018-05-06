@@ -8,6 +8,7 @@ import { getInfo } from '../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { RkButton } from 'react-native-ui-kitten';
 import InfoModal from '../components/InfoModal';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class Camera_Screen extends Component {
   static navigationOptions = {
@@ -26,7 +27,8 @@ class Camera_Screen extends Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
-    modalVisible: false
+    modalVisible: false,
+    isLoading: false
   }
 
   _closeModal() {
@@ -48,6 +50,7 @@ class Camera_Screen extends Component {
     } else {
       return (
         <View style={{ flex: 1 }}>
+          <Spinner visible={this.state.isLoading} color={'#003399'} size={'large'} />
           <Camera style={{ flex: 1 }} type={this.state.type} ref={(ref) => { this.camera = ref }}>
             <View style={{ flex: 1, backgroundColor: 'transparent', flexDirection: 'column', alignItems: 'center' }}>
               <TouchableOpacity style={{ flex: 1, paddingTop: 20, paddingRight: 20, alignSelf: 'flex-end' }}
@@ -65,9 +68,9 @@ class Camera_Screen extends Component {
               </TouchableOpacity>
               <TouchableOpacity onPress={this.snap.bind(this)}>
                 <Icon
-                  style={[UtilStyles.icon, { color: 'white', marginBottom: 20 }]}
+                  style={[UtilStyles.icon, { color: 'white', marginBottom: 30 }]}
                   name={'camera'}
-                  size={35} />
+                  size={55} />
               </TouchableOpacity>
             </View>
           </Camera>
@@ -79,11 +82,16 @@ class Camera_Screen extends Component {
 
   snap = async () => {
     if (this.camera) {
+      this.setState({
+        isLoading: true
+      });
+
       let photo = await this.camera.takePictureAsync();
       await this.props.getInfo(photo, "45.4946761,-73.5644848")
       
       this.setState({
-        modalVisible: true
+        modalVisible: true,
+        isLoading: false
       });
     }
   };
