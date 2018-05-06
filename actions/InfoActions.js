@@ -15,7 +15,7 @@ export const getInfo = (photo, geo) => {
     formData.append('file', { uri: blobFile, name: filename, type });
     formData.append("geo", geo);
 
-    let result = await fetch("http://ac506176.ngrok.io/api", {
+    let result = await fetch("http://fa1ffea6.ngrok.io/api", {
       method: "POST",
       body: formData,
       header: {
