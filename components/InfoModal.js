@@ -7,55 +7,42 @@ import {
   RkButton,
   RkStyleSheet
 } from 'react-native-ui-kitten';
-import { updateCard } from '../actions';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { UtilStyles } from '../style/styles';
+import { TextInput } from 'react-native-gesture-handler';
 
-class CardModal extends Component {
+class InfoModal extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      Nom: 'eTRI',
-      Version: '01',
-      But: 'HackQC2018',
-      GitHub: 'mccjul/RecycleRN',
-    }
   }
 
   render() {
-    const { Nom, Version, But, GitHub } = this.state
+    const { Municipalite, Frequence, Jour, Info, displayModal } = this.props.data;
+
     return (
-      <Modal isVisible={this.props.payment_modal}>
+      <Modal isVisible={displayModal}>
         <View style={styles.modalContent}>
           <View style={{ marginTop: 10, marginLeft: 5, marginRight: 5, marginBottom: 25 }}>
             <View style={styles.row}>
-              <RkTextInput label='Nom'
-                value={Nom}
-                onChangeText={(text) => this.setState({ Nom: text })}
+              <RkTextInput label='Municipalité'
+                value={Municipalite}
                 rkType='right clear' />
             </View>
             <View style={styles.row}>
-              <RkTextInput label='Version'
-                value={Version}
-                onChangeText={(text) => this.setState({ Version: text })}
+              <RkTextInput label='Fréquence'
+                value={Frequence}
                 rkType='right clear'
               />
             </View>
             <View style={styles.row}>
-              <RkTextInput label='But'
-                value={But}
-                onChangeText={(text) => this.setState({ But: text })}
+              <RkTextInput label='Jour'
+                value={Jour}
                 rkType='right clear'
               />
             </View>
             <View style={styles.row}>
-              <RkTextInput label='GitHub'
-                value={GitHub}
-                onChangeText={(text) => this.setState({ GitHub: text })}
-                rkType='right clear'
-              />
+              <Text style={{ paddingTop: 10, paddingBottom: 10 }}>{Info}</Text>
             </View>
           </View>
           <View style={{
@@ -64,8 +51,8 @@ class CardModal extends Component {
             <RkButton
               style={{ width: 110, justifyContent: 'flex-start' }}
               onPress={() => {
-                this.props.updateCard(this.state);
-                this.props._closeModal()
+                this.props._closeModal();
+                this.props.data.displayModal = false;
               }}
               rkType='medium success rounded'>
               <Icon
@@ -76,7 +63,7 @@ class CardModal extends Component {
                 ]}
                 name={'check-circle'}
                 size={28} />
-              Close
+              Fermer
             </RkButton>
           </View>
         </View>
@@ -106,6 +93,9 @@ let styles = RkStyleSheet.create(theme => ({
     borderColor: theme.colors.border.base,
     alignItems: 'center'
   },
+  multiline: {
+    height: 100
+  },
   button: {
     marginHorizontal: 16,
     marginBottom: 32
@@ -120,9 +110,9 @@ let styles = RkStyleSheet.create(theme => ({
   },
 }));
 
-const mapStateToProps = ({ settings }) => {
-  const { card } = settings;
-  return { card };
+const mapStateToProps = ({ info }) => {
+  const { data } = info;
+  return { data };
 };
 
-export default connect(mapStateToProps, { updateCard })(CardModal);
+export default connect(mapStateToProps, null)(InfoModal);
