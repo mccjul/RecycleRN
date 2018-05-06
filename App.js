@@ -56,7 +56,11 @@ export default class App extends React.Component {
   async _cacheResourcesAsync() {
     const images = [
       require("./assets/icons/app-icon.png"),
-      require("./assets/icons/loading-icon.png")
+      require("./assets/icons/loading-icon.png"),
+      require("./assets/images/backgroundLoginV3.png"),
+      require("./assets/images/backgroundLoginV7.png"),
+      require("./assets/images/cartLogo.png"),
+      require("./assets/images/cartLogo1.png")
     ];
 
     await Asset.loadAsync(images);
@@ -79,7 +83,7 @@ export default class App extends React.Component {
 
     const MainNavigator = TabNavigator(
       {
-        travel: {
+        map_screen: {
           screen: Map_Screen,
           title: "Carte",
           navigationOptions: {
@@ -88,12 +92,12 @@ export default class App extends React.Component {
             )
           }
         },
-        board_scan: {
+        camera_screen: {
           screen: Camera_Screen,
           title: "Caméra",
           navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-              <Icon name={"sign-in"} size={20} color={tintColor} />
+              <Icon name={"camera"} size={20} color={tintColor} />
             )
           }
         }
@@ -105,14 +109,20 @@ export default class App extends React.Component {
               onPress={() => NavigatorService.navigate("settings_screen")}
             >
               <Icon
-                style={[UtilStyles.icon, { fontSize: 24, marginRight: 10 }]}
+                style={[UtilStyles.icon, { fontSize: 24, marginRight: 10, color: 'white'}]}
                 name={"sliders"}
               />
             </TouchableOpacity>
           )
         }),
-
-        tabBarPosition: "bottom"
+        tabBarPosition: "bottom",
+        tabBarOptions: {
+          activeTintColor: 'white',
+          inactiveTintColor: 'darkgreen',
+          style: {
+            backgroundColor: 'mediumseagreen',
+          },
+        },
       }
     );
 
@@ -127,7 +137,9 @@ export default class App extends React.Component {
     return (
       <Provider store={this.store}>
         <View style={{ flex: 1 }}>
-          <StatusBar barStyle="default" />
+          <StatusBar
+            barStyle="light-content"
+          />
           <LoginNavigator
             ref={navigatorRef => {
               NavigatorService.setContainer(navigatorRef);

@@ -9,7 +9,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Camera_Screen extends Component {
   static navigationOptions = {
-    title: 'Caméra'
+    title: 'Caméra',
+    headerTintColor: "white",
+    headerStyle: {
+      backgroundColor: 'mediumseagreen'
+    }
   };
 
   constructor(props) {

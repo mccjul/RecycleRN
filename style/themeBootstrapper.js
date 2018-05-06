@@ -110,11 +110,11 @@ export let bootstrap = () => {
   });
 
   RkTheme.setType('RkChoice', 'whiteGreenCheck', {
-    backgroundColor: 'green',
+    backgroundColor: 'mediumseagreen',
   });
 
   RkTheme.setType('RkChoice', 'whiteGreenCheckSelected', {
-    backgroundColor: 'green',
+    backgroundColor: 'mediumseagreen',
   });
 
   RkTheme.setType('RkChoice', 'helloClickMeSelected', {
