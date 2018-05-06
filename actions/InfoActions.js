@@ -48,7 +48,7 @@ const processResponse = (r) => {
       };
       break;
     case "Electronic":
-      NavigatorService.navigate('Carte')
+      NavigatorService.navigate('map_screen');
       return {
         NearestDropOff: r.NearestDropOff,
         displayModal: false

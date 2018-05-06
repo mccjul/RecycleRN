@@ -88,10 +88,8 @@ class Camera_Screen extends Component {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-
-      str_loc = location.coords.latitude + ',' + location.coords.longitude
-      console.log(str_loc);
       let photo = await this.camera.takePictureAsync();
+      str_loc = location.coords.latitude + ',' + location.coords.longitude
       await this.props.getInfo(photo, str_loc);
 
       this.setState({

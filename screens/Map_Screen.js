@@ -27,12 +27,10 @@ class Map_Screen extends Component {
     }
   };
 
-
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
-
 
   componentWillMount() {
     if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -42,7 +40,6 @@ class Map_Screen extends Component {
     } else {
       this._getLocationAsync();
     }
-
   }
 
   _getLocationAsync = async () => {
@@ -99,8 +96,8 @@ class Map_Screen extends Component {
       return {
         title: elm.name,
         coordinates: {
-          latitude: elm.Point.lon,
-          longitude: elm.Point.lat,
+          latitude: parseFloat(elm.Point.lon),
+          longitude: parseFloat(elm.Point.lat),
         },
         pinColor: "#00BFFF"
       }
@@ -110,61 +107,6 @@ class Map_Screen extends Component {
   }
 
   render() {
-
-    elec_loc = {
-      NearestDropOff: [
-        {
-          Point: {
-            lat: -73.59755320,
-            lon: 45.61221540
-          },
-          address: '770 rue Notre-Dame Ouest',
-          name: 'Bureau en Gros; Notre Dame'
-        },
-        {
-          Point: {
-            lat: -73.47161050,
-            lon: 45.47158570
-          },
-          address: '1230 rue Notre-Dame Ouest',
-          name: 'Électrobac-Metro Plus de la Montagne oeAlimentation Sylvain Bolduc'
-        },
-        {
-          Point: {
-            lat: -73.62009930,
-            lon: 45.52997060
-          },
-          address: '1100 rue Notre-Dame Ouest',
-          name: 'Électrobac-École de Technologie Supérieure (ÉTS); Pavillon A'
-        },
-        {
-          Point: {
-            lat: -73.56281440,
-            lon: 45.49516360
-          },
-          address: '1111 rue Notre-Dame Ouest',
-          name: 'Électrobac-École de Technologie Supérieure (ÉTS); Pavillon B'
-        },
-        {
-          Point: {
-            lat: -75.71286060,
-            lon: 45.42842540
-          },
-          address: '1100 boul. René-Lévesque O',
-          name: 'Électrobac-1100 René-Lévesque; Oxford Properties'
-        },
-        {
-          Point: {
-            lat: -71.21985080,
-            lon: 46.80610140
-          },
-          address: '1220 rue Notre-Dame Ouest',
-          name: 'Électrobac-École de Technologie Supérieure (ÉTS); Pavillon Maison des étudiants'
-        }
-      ],
-      type: 'Electronic'
-    };
-
     let region = {
       latitude: 44.363518,
       longitude: -76.360238,
@@ -188,7 +130,7 @@ class Map_Screen extends Component {
           region={region}
         >
           {markers.map((marker, index) => {
-            console.log('here', marker)
+            // console.log('here', marker)
             return (
               <MapView.Marker
                 key={index}
@@ -206,9 +148,10 @@ class Map_Screen extends Component {
 
 const mapStateToProps = ({ info }) => {
   const { data } = info;
-  if (data.type !== 'Electronic') {
+  if (!data.NearestDropOff) {
     return { NearestDropOff: [] }
   }
+  // console.log("test" + data.NearestDropOff);
   return { NearestDropOff: [...data.NearestDropOff] };
 };
 
